@@ -1,0 +1,91 @@
+@keyframes bgFlow {
+  0% {
+    --bg-top: var(--bg-1);
+    --bg-bottom: var(--bg-3);
+  }
+  20% {
+    --bg-top: var(--bg-2);
+    --bg-bottom: var(--bg-4);
+  }
+  40% {
+    --bg-top: var(--bg-3);
+    --bg-bottom: var(--bg-5);
+  }
+  60% {
+    --bg-top: var(--bg-4);
+    --bg-bottom: var(--bg-2);
+  }
+  80% {
+    --bg-top: var(--bg-5);
+    --bg-bottom: var(--bg-3);
+  }
+  100% {
+    --bg-top: var(--bg-1);
+    --bg-bottom: var(--bg-4);
+  }
+}
+@keyframes waveMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 50% 50%;
+  }
+}
+.slot-background {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 100vw;
+  height: 100vh;
+  animation:
+    bgFlow 30s ease-in-out infinite,
+    waveMove 60s linear infinite;
+  background: linear-gradient(180deg, var(--bg-top),  var(--bg-bottom));
+}
+
+.slot-wrapper {
+  background-color: aquamarine;
+}
+
+.buttons_container {
+  width: auto; 
+  display: flex;
+  justify-content: center;
+}
+
+#btn_slot_machine {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  outline: none;
+  width: fit-content;
+  padding: 10px 20px;
+  border-radius:20px;
+  height: auto;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(90deg,rgba(164, 255, 0, 0.51) 0%, rgba(164, 255, 0, 0.17) 51%, rgba(237, 221, 83, 1) 100%);
+  &:hover{
+    background-color: #ff0000;
+    scale: 1.05;
+    }
+  &:active{
+    scale: 1.0;
+  }
+}
+
+#btn_slot_machine img {
+  width: 50px;
+  display: block;
+  margin: 0 auto;
+}
+
+.btn_p_slot{
+  font-family: "Orbitron-Medium";
+  font-size: 1rem;
+  color: var(--lime);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}

@@ -1,0 +1,85 @@
+:root {
+  /* Sloot fields colors */
+  --lime: #a4ff00;
+  --harvest-orange: #ff7a00;
+  --prussian-blue: #001f3f;
+  --bright-snow: #fafafa;
+
+  /* Main Background (Transitions) */
+  --bg-1: #0a0518;
+  --bg-2: #0c0720;
+  --bg-3: #0e0826;
+  --bg-4: #10092c;
+  --bg-5: #120a32;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  outline: none;
+}
+/* Fonts */
+  /* Orbitron > Titles - buttons - numbers*/
+    /* Titles */
+@font-face {
+  font-family:"Orbitron-Bold" ;
+  src: url("../fonts/Orbitron/static/Orbitron-Bold.ttf");
+}
+@font-face {
+  font-family:"Orbitron-Medium";
+  src: url("../fonts/Orbitron/static/Orbitron-Medium.ttf");
+}
+  /* Inter > text */
+  /* Regular */
+@font-face {
+  font-family:"Inter-Regular";
+  src: url("../fonts/Inter/static/Inter_18pt-Regular.ttf");
+}
+  /* Bold */
+@font-face {
+  font-family: "Inter-Bold";
+  src: url("../fonts/Inter/static/Inter_18pt-Bold.ttf");
+}
+  /* Italic */
+@font-face {
+  font-family: "Inter-Italic";
+  src: url("../fonts/Inter/static/Inter_18pt-Italic.ttf");
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}

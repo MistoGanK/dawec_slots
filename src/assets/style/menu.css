@@ -1,0 +1,65 @@
+
+:root {
+  /* Sloot fields colors */
+  --lime: #a4ff00;
+  --harvest-orange: #ff7a00;
+  --prussian-blue: #001f3f;
+  --bright-snow: #fafafa;
+
+  /* Main Background (Transitions) */
+  --bg-1: #0a0518;
+  --bg-2: #0c0720;
+  --bg-3: #0e0826;
+  --bg-4: #10092c;
+  --bg-5: #120a32;
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@keyframes bgFlow {
+  0% {
+    --bg-top: var(--bg-1);
+    --bg-bottom: var(--bg-3);
+  }
+  20% {
+    --bg-top: var(--bg-2);
+    --bg-bottom: var(--bg-4);
+  }
+  40% {
+    --bg-top: var(--bg-3);
+    --bg-bottom: var(--bg-5);
+  }
+  60% {
+    --bg-top: var(--bg-4);
+    --bg-bottom: var(--bg-2);
+  }
+  80% {
+    --bg-top: var(--bg-5);
+    --bg-bottom: var(--bg-3);
+  }
+  100% {
+    --bg-top: var(--bg-1);
+    --bg-bottom: var(--bg-4);
+  }
+}
+@keyframes waveMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 50% 50%;
+  }
+}
+.slot-background {
+  width: 100vw;
+  height: 100vh;
+  animation:
+    bgFlow 30s ease-in-out infinite,
+    waveMove 60s linear infinite;
+  background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+}
+
+.slot-wrapper {
+  background-color: aquamarine;
+}
