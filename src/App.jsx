@@ -6,12 +6,20 @@ import TitleGame from "./components/TitleGame";
 import GameRoom from "./pages/games/GameRoom";
 import SlotMachine from "./pages/games/gameSlots/SlotMachine";
 
+
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Menu/>}></Route>
-        <Route path="/games" element={<GameRoom />}></Route>
+        <Route path="/games" element={
+          <GameRoom>
+            <Route path="/gameSlots"></Route>
+            <Route path="/gamesCards"></Route>
+          </GameRoom>
+            
+          }>
+        </Route>
       </Routes>
     </>
   );
