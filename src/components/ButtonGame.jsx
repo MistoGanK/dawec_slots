@@ -4,8 +4,6 @@ import casinoMusic from "../assets/music/casino-ambient.mp3";
 import casinoMusic2 from "../assets/music/casino-ambient2.mp3";
 
 
-// Usamos un objeto constante para envolver nuestra instancia.
-// Esto evita el error de "Modifying a variable defined outside a component"
 const audioManager = {
   current: null
 };
@@ -13,14 +11,12 @@ const audioManager = {
 export default function ButtonGame() {
   
   const playAudio = (audioFile) => {
-    // 1. Si ya existe un audio sonando dentro de nuestro manager, lo paramos
+    // Si existe audio, se para
     if (audioManager.current) {
       audioManager.current.pause();
       audioManager.current.currentTime = 0;
     }
 
-    // 2. Creamos la nueva instancia dentro de la propiedad del objeto.
-    // Al ser una propiedad de un objeto constante, el linter ya no marcará error de reasignación.
     audioManager.current = new Audio(audioFile);
     audioManager.current.loop = true;
     audioManager.current.volume = 0.2;
@@ -61,7 +57,6 @@ export default function ButtonGame() {
   );
 }
 
-// Exportamos la función de parada usando la nueva estructura del objeto
 export const stopGlobalAudio = () => {
   if (audioManager.current) {
     audioManager.current.pause();
