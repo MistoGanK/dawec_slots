@@ -1,13 +1,13 @@
-import React from 'react'
-import TitleGame from '../../components/TitleGame'
-import { NavLink } from 'react-router-dom'
-import ButtonGame from '../../components/ButtonGame'
+import { Outlet, useMatch } from 'react-router-dom';
+import ButtonGame from '../../components/ButtonGame';
 
 export default function GameRoom() {
-  // Rutas a los diferentes juegos
+    const isExactGameRoot = useMatch('/games');
+
   return (
     <div className='slot-background'>
-     <ButtonGame />
+      {isExactGameRoot && <ButtonGame/> }
+      <Outlet /> {/* Slots && Cards*/}
     </div>
-  )
+  );
 }

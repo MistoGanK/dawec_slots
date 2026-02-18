@@ -43,7 +43,7 @@
   animation:
     bgFlow 30s ease-in-out infinite,
     waveMove 60s linear infinite;
-  background: linear-gradient(180deg, var(--bg-top),  var(--bg-bottom));
+  background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
 }
 
 .slot-wrapper {
@@ -54,29 +54,40 @@
   display: flex;
   flex-direction: row;
   gap: 12px;
-  width: auto; 
+  width: auto;
   display: flex;
   justify-content: center;
 }
 
-#btn_slot_machine {
+.btn_slot_machine {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 12px;
   outline: none;
-  width: fit-content;
+  width: 150px;
+  height: 150px;
   padding: 10px 20px;
-  border-radius:20px;
-  height: auto;
+  border-radius: 20px;
   cursor: pointer;
   border: none;
-  background: linear-gradient(90deg,rgba(164, 255, 0, 0.51) 0%, rgba(164, 255, 0, 0.17) 51%, rgba(237, 221, 83, 1) 100%);
-  &:hover{
+  background: linear-gradient(
+    90deg,
+    rgba(164, 255, 0, 0.51) 0%,
+    rgba(164, 255, 0, 0.17) 51%,
+    rgba(237, 221, 83, 1) 100%
+  );
+  img {
+    width: 70px;
+    height: 70px;
+  }
+  &:hover {
     background-color: #ff0000;
     scale: 1.05;
-    }
-  &:active{
-    scale: 1.0;
+  }
+  &:active {
+    scale: 1;
   }
 }
 
@@ -86,9 +97,162 @@
   margin: 0 auto;
 }
 
-.btn_p_slot{
+.btn_p_slot {
   font-family: "Orbitron-Medium";
   font-size: 1rem;
   color: var(--lime);
-  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.slot-machine {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  aspect-ratio: 3/2;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 0 30px rgba(164, 255, 0, 0.2),
+    inset 0 0 15px rgba(0, 0, 0, 0.9);
+  border: 4px solid rgba(164, 255, 0, 0.4);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.slot-body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.slot-scoop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% + -12px));
+  width: 98%;
+  height: 33.333%;
+  pointer-events: none;
+  z-index: 10;
+  border: 2px solid var(--lime);
+  border-left: none;
+  border-right: none;
+  background: linear-gradient(
+    180deg,
+    rgba(164, 255, 0, 0.05) 0%,
+    rgba(164, 255, 0, 0) 50%,
+    rgba(164, 255, 0, 0.05) 100%
+  );
+  box-shadow: 0 0 20px rgba(164, 255, 0, 0.3);
+  border-radius: 10px;
+}
+
+.slot-button-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(164, 255, 0, 0.2);
+}
+
+.slot-button {
+  padding: 12px 30px;
+  font-family: "Orbitron-Bold", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  /* Botón con estilo "Cyber" */
+  background: transparent;
+  color: var(--lime);
+  border: 1px solid var(--lime);
+  box-shadow: inset 0 0 10px rgba(164, 255, 0, 0.2);
+  &:hover {
+    background: var(--lime);
+    color: #000;
+    box-shadow: 0 0 20px var(--lime);
+    transform: translateY(-2px);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+}
+/* Pop Up */
+.slot-button:last-child {
+  background: linear-gradient(90deg, #a4ff00 0%, #eddd53 100%);
+  color: #000;
+  border: none;
+  font-weight: 900;
+}
+
+.slot-popup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  animation: fadeIn 0.3s ease;
+}
+
+.slot-popup-content {
+  background: #0a0a0f;
+  border: 3px solid var(--lime);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 50px rgba(164, 255, 0, 0.4);
+}
+
+.slot-popup-content h2 {
+  color: var(--lime);
+  font-family: "Orbitron-Bold", sans-serif;
+  margin-bottom: 10px;
+}
+
+.slot-popup-content p {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.prize-tag {
+  font-size: 4rem;
+  font-family: "Orbitron-Black", sans-serif;
+  color: #fff;
+  text-shadow: 0 0 20px var(--lime);
+  margin: 20px 0;
+}
+
+.slot-popup-content button {
+  background: var(--lime);
+  color: #000;
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: transform 0.2s;
+}
+
+.slot-popup-content button:hover {
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
