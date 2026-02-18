@@ -1,0 +1,67 @@
+:root {
+  --snow: #ffffff;
+  --blue-brand: #0b6cf0;
+  --characol: #333333;
+}
+
+.cards-game-container {
+  width: 25vw;
+  min-width: 300px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 0 30px rgba(164, 255, 0, 0.2),
+    inset 0 0 15px rgba(0, 0, 0, 0.9);
+  border: 4px solid rgba(164, 255, 0, 0.4);
+  border-radius: 24px;
+  border-radius: 15px;
+}
+
+.game-title {
+  font-family: "Montserrat-Bold", sans-serif;
+  color: var(--blue-brand);
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.game-controls {
+  display: flex;
+  gap: 15px;
+}
+
+.grid-carta {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  padding: 10px;
+  perspective: 1000px;
+}
+
+@media (min-width: 640px) {
+  .grid-carta {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.game-stats {
+  font-family: "Inter-Medium", sans-serif;
+  color: var(--characol);
+  font-size: 1.1rem;
+}
+
+.slot-button-card {
+  cursor: pointer;
+  padding: 10px 20px;
+  font-family: "Inter-Bold", sans-serif;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
