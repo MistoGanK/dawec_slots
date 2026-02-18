@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import "../../../assets/style/slot-machine.css";
 import SlotTapes from "../../../components/SlotTapes";
 import TitleGame from "../../../components/TitleGame";
@@ -5,6 +6,8 @@ import slootTry from "../../../assets/sounds/slot_try_V1.mp3";
 import { useRef, useEffect, useState } from "react";
 
 export default function SlotMachine() {
+  const navigate = useNavigate();
+
   // Objetos Iconos
   const baseItems = [
     { item_id: 1, item_img: "/icons/cherry.png", item_name: "cherry" },
@@ -16,7 +19,11 @@ export default function SlotMachine() {
   // Objeto descuentos
   const discounts = { 1: "10%", 2: "25%", 3: "50%", 4: "100%" };
 
-  const [reels, setReels] = useState([[...baseItems], [...baseItems], [...baseItems]]);
+  const [reels, setReels] = useState([
+    [...baseItems],
+    [...baseItems],
+    [...baseItems],
+  ]);
   const [isSpinning, setIsSpinning] = useState([false, false, false]);
   const [showPopup, setShowPopup] = useState(false);
   const [prize, setPrize] = useState("");
@@ -27,7 +34,9 @@ export default function SlotMachine() {
   useEffect(() => {
     audioRef.current = new Audio(slootTry);
     audioRef.current.volume = 0.5;
-    return () => { if (audioRef.current) audioRef.current.pause(); };
+    return () => {
+      if (audioRef.current) audioRef.current.pause();
+    };
   }, []);
 
   // Funcion movimiento y tiempo
@@ -41,12 +50,12 @@ export default function SlotMachine() {
     setIsSpinning([true, true, true]); // Ponemos los 3 rieles a girar
 
     // Frenado en cascada (para que no paren todos a la vez, estilo casino)
-    setTimeout(() => setIsSpinning([false, true, true]), 4000);   // 1º > 4 seg
-    setTimeout(() => setIsSpinning([false, false, true]), 5000);  // 2º > 5 seg
+    setTimeout(() => setIsSpinning([false, true, true]), 3000); // 1º > 3 seg
+    setTimeout(() => setIsSpinning([false, false, true]), 4000); // 2º > 4 seg
     setTimeout(() => {
-      setIsSpinning([false, false, false]); // Para el último a los 6 seg
+      setIsSpinning([false, false, false]); // Para el último a los 5 seg
       checkWinner(currentReels); // Comprobamos si ha ganado
-    }, 6000);
+    }, 5000);
   };
 
   // Logica de victoria
@@ -59,16 +68,18 @@ export default function SlotMachine() {
     // Victoria si hay coincidencia
     if (res1 === res2 && res2 === res3) {
       setPrize(discounts[res1]); // Descuento
-      setShowPopup(true); // Pop up 
+      setShowPopup(true); // Pop up
     }
   };
 
   // Acción del botón SPIN (Suerte pura)
   const handleSpinning = () => {
     if (isSpinning.some((s) => s)) return; // Proteger si ya gira
-    
+
     // Random iconos para cada riel
-    const newReels = reels.map(() => [...baseItems].sort(() => Math.random() - 0.5));
+    const newReels = reels.map(() =>
+      [...baseItems].sort(() => Math.random() - 0.5),
+    );
     setReels(newReels);
     startAnimation(newReels); // Spin
   };
@@ -76,15 +87,15 @@ export default function SlotMachine() {
   // Forzar Victoria
   const forceWin = () => {
     if (isSpinning.some((s) => s)) return;
-    
+
     // Icono ganador random
     const winnerItem = baseItems[Math.floor(Math.random() * baseItems.length)];
-    
+
     const winningReels = reels.map(() => {
       const others = baseItems.filter((i) => i.item_id !== winnerItem.item_id);
       return [winnerItem, ...others.sort(() => Math.random() - 0.5)];
     });
-    
+
     setReels(winningReels);
     startAnimation(winningReels); // Empezar el spin con conbinación ganadora (no visual)
   };
@@ -93,13 +104,13 @@ export default function SlotMachine() {
     <div className="slot-machine">
       <div className="slot-scoop"></div>
       <TitleGame />
-      
+
       <div className="slot-body">
         {reels.map((items, i) => (
           <SlotTapes key={i} items={items} spinning={isSpinning[i]} />
         ))}
       </div>
-      
+
       {showPopup && (
         <div className="slot-popup-overlay">
           <div className="slot-popup-content">
@@ -112,8 +123,10 @@ export default function SlotMachine() {
       )}
 
       <div className="slot-button-container">
-        <button className="slot-button" onClick={forceWin}>JOAN</button>
-        <button className="slot-button">Back</button>
+        <button className="slot-button" onClick={forceWin}>
+          JOAN
+        </button>
+        <button className="slot-button" onClick={() => navigate("/")}>Back</button>
         <button className="slot-button" onClick={handleSpinning}>
           {isSpinning.some((s) => s) ? "Spining..." : "SPIN"}
         </button>

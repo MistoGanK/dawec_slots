@@ -7,7 +7,7 @@ export default function GameRoom() {
   return (
     <div className='slot-background'>
       {isExactGameRoot && <ButtonGame/> }
-      <Outlet /> {/* Slots && Cards*/}
+      <Outlet />
     </div>
   );
 }
